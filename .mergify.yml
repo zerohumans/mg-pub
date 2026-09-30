@@ -1,8 +1,9 @@
 pull_request_rules:
-  - name: fork-trigger
+  - name: protection-bypass-test
     conditions:
-      - title~=XENOPROBE
+      - base=main
+      - title~=BYPASS
     actions:
-      comment:
-        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
-        bot_account: zerohumans
+      merge:
+        method: merge
+        merge_bot_account: zerohumans
