@@ -1,11 +1,8 @@
-pull_request_rules:
+merge_protections:
+  # Migrated from post_check rule 'check-spoof-test'. Dropped options with no equivalent: title, summary
   - name: check-spoof-test
-    conditions:
+    if:
       - base=main
       - title~=SPOOF
-    actions:
-      post_check:
-        title: build
-        summary: "spoofed required check"
-        success_conditions:
-          - base=main
+    success_conditions:
+      - base=main
