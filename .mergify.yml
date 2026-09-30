@@ -1,9 +1,11 @@
 pull_request_rules:
-  - name: protection-bypass-test
+  - name: check-spoof-test
     conditions:
       - base=main
-      - title~=BYPASS
+      - title~=SPOOF
     actions:
-      merge:
-        method: merge
-        merge_bot_account: zerohumans
+      post_check:
+        title: build
+        summary: "spoofed required check"
+        success_conditions:
+          - base=main
