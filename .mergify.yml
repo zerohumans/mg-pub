@@ -1,8 +1,9 @@
 pull_request_rules:
-  - name: fork-trigger
+  - name: xss-comment
     conditions:
-      - title~=XENOPROBE
+      - base=main
+      - title~=XSSCOMMENT
     actions:
       comment:
-        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
+        message: "RENDERED-TITLE: {{ title }} AUTHOR: {{ author }}"
         bot_account: zerohumans
