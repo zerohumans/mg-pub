@@ -1,8 +1,11 @@
-pull_request_rules:
-  - name: fork-trigger
-    conditions:
-      - title~=XENOPROBE
-    actions:
-      comment:
-        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
-        bot_account: zerohumans
+queue_rules:
+  - name: default
+    priority_rules:
+      - name: hotfix
+        priority: high
+        conditions:
+          - title~=HOTFIX
+    queue_conditions:
+      - base=main
+    merge_conditions:
+      - check-success = my-required-check
