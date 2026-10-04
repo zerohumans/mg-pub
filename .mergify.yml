@@ -1,8 +1,15 @@
+merge_protections:
+  - name: require-check
+    if:
+      - base=main
+    success_conditions:
+      - check-success = my-required-check
+
 pull_request_rules:
-  - name: fork-trigger
+  - name: auto-merge
     conditions:
-      - title~=XENOPROBE
+      - base=main
+      - title~=AUTOMERGE
     actions:
-      comment:
-        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
-        bot_account: zerohumans
+      merge:
+        method: merge
