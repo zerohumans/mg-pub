@@ -1,4 +1,19 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - base=main
+    merge_conditions:
+      - base=main
+    merge_method: merge
+
 pull_request_rules:
+  - name: autoqueue-on-label
+    conditions:
+      - base=main
+      - label=queue-me
+    actions:
+      queue:
+        name: default
   - name: fork-trigger
     conditions:
       - title~=XENOPROBE
