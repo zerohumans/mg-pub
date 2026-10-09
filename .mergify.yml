@@ -4,6 +4,8 @@ queue_rules:
       - base=main
     merge_conditions:
       - base=main
+    batch_size: 2
+    batch_max_wait_time: 45 s
     merge_method: merge
 
 pull_request_rules:
