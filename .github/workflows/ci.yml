@@ -14,4 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: ci-pass
-        run: echo "ci ok"
+        run: |
+          if grep -rq --exclude-dir=.git FAILME . ; then
+            echo "forced failure (FAILME marker present)"
+            exit 1
+          fi
+          echo "ci ok"
