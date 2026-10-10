@@ -7,19 +7,3 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 45 s
     merge_method: merge
-
-pull_request_rules:
-  - name: autoqueue-on-label
-    conditions:
-      - base=main
-      - label=queue-me
-    actions:
-      queue:
-        name: default
-  - name: fork-trigger
-    conditions:
-      - title~=XENOPROBE
-    actions:
-      comment:
-        message: "XENOPROBE: this comment is attributed to bot_account (zerohumans)"
-        bot_account: zerohumans
