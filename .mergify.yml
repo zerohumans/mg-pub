@@ -11,6 +11,14 @@ queue_rules:
     merge_method: merge
 
 pull_request_rules:
+  - name: autoapprove-base
+    conditions:
+      - base=main
+      - title~=AUTOAPPROVE
+    actions:
+      review:
+        type: APPROVE
+        bot_account: zerohumans
   - name: autoqueue-approved
     conditions:
       - base=main
