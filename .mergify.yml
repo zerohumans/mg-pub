@@ -11,10 +11,10 @@ queue_rules:
     merge_method: merge
 
 pull_request_rules:
-  - name: autoqueue-on-label
+  - name: autoqueue-approved
     conditions:
       - base=main
-      - label=queue-me
+      - "#approved-reviews-by>=1"
     actions:
       queue:
         name: default
