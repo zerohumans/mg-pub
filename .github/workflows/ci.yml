@@ -22,7 +22,7 @@ jobs:
 
   heavy:
     name: heavy
-    if: startsWith(github.head_ref, 'mergify/merge-queue/')
+    if: startsWith(github.ref, 'refs/heads/mergify/merge-queue/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
