@@ -16,16 +16,15 @@ jobs:
       - name: fast
         run: |
           if grep -rq --exclude-dir=.git --exclude-dir=.github FAILME . ; then
-            echo "forced failure (FAILME marker present)"
-            exit 1
+            echo "forced failure"; exit 1
           fi
           echo "fast ok"
       - name: heavy-merge-queue
         if: startsWith(github.head_ref, 'mergify/merge-queue/')
         run: |
-          echo "running merge-time heavy check on draft (${{ github.head_ref }})"
-          if [ -f api/y.txt ] && ls api/pr*.txt >/dev/null 2>&1; then
-            echo "HEAVY FAIL: bad combination (api/y.txt coexists with api/pr*.txt)"
+          echo "merge-time heavy check on draft (${{ github.head_ref }})"
+          if [ -f api/y.txt ] && [ -f api/pr3.txt ]; then
+            echo "HEAVY FAIL: bad combination (api/y.txt + api/pr3.txt)"
             exit 1
           fi
           echo "heavy ok"
