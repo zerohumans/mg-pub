@@ -8,6 +8,13 @@ queue_rules:
     batch_max_wait_time: 45 s
     merge_method: merge
 
+merge_protections:
+  - name: SecurityLabel
+    if:
+      - label=needs-security
+    success_conditions:
+      - label=security-approved
+
 pull_request_rules:
   - name: autoqueue-on-label
     conditions:
