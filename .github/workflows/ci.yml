@@ -20,14 +20,17 @@ jobs:
           fi
           echo "fast ok"
 
-  myspecial:
-    name: myspecial
+  heavy:
+    name: heavy
+    if: startsWith(github.head_ref, 'mergify/merge-queue/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: ms
+      - name: pre-merge-heavy
         run: |
-          if [ -f KILLMYSPECIAL ]; then
-            echo "myspecial forced failure"; exit 1
+          echo "heavy (merge-time) on ${{ github.head_ref }}"
+          if [ -f api/y.txt ] && ls api/pr*.txt >/dev/null 2>&1; then
+            echo "HEAVY FAIL: bad combination (api/y.txt + api/pr*.txt)"
+            exit 1
           fi
-          echo "myspecial ok"
+          echo "heavy ok"
