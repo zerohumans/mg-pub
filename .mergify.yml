@@ -10,4 +10,4 @@ queue_rules:
       - check-success = heavy
     batch_size: 2
     batch_max_wait_time: 45 s
-    merge_method: merge
+    merge_method: squash
