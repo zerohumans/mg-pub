@@ -1,7 +1,3 @@
-scopes:
-  source:
-    manual:
-
 merge_protections_settings:
   auto_merge_conditions: true
 
@@ -19,7 +15,7 @@ queue_rules:
       - label = ready-to-merge
     merge_conditions:
       - base = main
-      - check-success = heavy
+      - check-success = ci
     batch_size: 2
     batch_max_wait_time: 45 s
     merge_method: merge
