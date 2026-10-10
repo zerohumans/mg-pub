@@ -1,12 +1,9 @@
 name: ci
-
 on:
   push:
   pull_request:
-
 permissions:
   contents: read
-
 jobs:
   ci:
     name: ci
@@ -15,11 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: fast
         run: |
-          if grep -rq --exclude-dir=.git --exclude-dir=.github FAILME . ; then
-            echo "forced failure"; exit 1
-          fi
+          if grep -rq --exclude-dir=.git --exclude-dir=.github FAILME . ; then echo "forced failure"; exit 1; fi
           echo "fast ok"
-
   heavy:
     name: heavy
     if: startsWith(github.ref, 'refs/heads/mergify/merge-queue/')
@@ -28,9 +22,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: pre-merge-heavy
         run: |
-          echo "heavy (merge-time) on ${{ github.head_ref }}"
+          echo "heavy (merge-time) on $GITHUB_REF"
           if [ -f api/y.txt ] && ls api/pr*.txt >/dev/null 2>&1; then
-            echo "HEAVY FAIL: bad combination (api/y.txt + api/pr*.txt)"
-            exit 1
+            echo "HEAVY FAIL: bad combination (api/y.txt + api/pr*.txt)"; exit 1
           fi
           echo "heavy ok"
